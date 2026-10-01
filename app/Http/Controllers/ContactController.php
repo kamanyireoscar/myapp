@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contact;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -10,9 +10,14 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function contact()
     {
-        //
+       return view('contact');//
+    }
+      public function contactList()
+    {
+        $contacts = contact::all();
+       return view('contact-list', compact('contacts'));//
     }
 
     /**
@@ -34,7 +39,7 @@ class ContactController extends Controller
        $contact ->department  = $request ->input('department');
        $contact ->message  = $request ->input('message');
        $contact ->save();
-       return redirect() ->back();//
+       return redirect() ->back(); //
     }
 
     /**
